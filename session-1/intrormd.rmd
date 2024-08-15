@@ -5,3 +5,226 @@
 
 |> 
 
+# Data Types
+
+Vectors and Lists
+### Vectors: Atomic vectors
+
+Characters
+Integers
+Boolean
+Decimals
+Factors
+
+For vectors they have to be of the same type
+Vectors can be empty or of any length (i.e., 1, 2, ...., n)
+
+For vectors with more than elements/object, you combine using `c()` (combine function) and separate the elements using commas
+
+
+### Lists
+List is also vector
+But they can be of different types
+
+### Data frames
+
+Just lists, that are two dimensional
+The lists of the same length
+Elements of one list should be of the same type
+
+
+# Lab 1
+
+## Atomic Vectors - Characters
+
+These are objects with strings of any length
+For example, names of people, names of places, names of countries
+They should be enclosed in quotation marks
+R accepts both single and double quotation marks
+
+### length 1 character vectors
+```{r characters}
+# examples: The following are the same
+# with double quotes
+first_name <- "john"
+print(first_name)
+first_name
+(first_name <- "john")
+# with single quotes
+first_name <- 'john'
+first_name
+```
+
+
+### length more than 
+
+```{r characters-more-than-one}
+# examples
+first_names <- c('john', 'cyrus')
+first_names
+
+
+first_names1 <- c('john', 'cyrus', 'josh', 'lucky')
+first_names1
+```
+When you have vectors you can check the number of items using `length()`
+
+#### Checking the legth of our items
+
+
+```{r character-length}
+# length one character vector
+length1 <- length(first_name)
+# use paste()/paste0() to combine elements when printing
+# the difference is how they separate the elements they are combining
+paste("Vector with length: ", length1) # will always separate items by space (the default case)
+paste("Vector with length: ", length1, sep = ":") # separate with a new line
+paste0("Vector with length: ", length1) # prints as provided
+paste0("Vector with length:", length1) # prints as provided
+
+# length two character vectors
+length(first_name)
+
+# other character vectors
+length(first_names1)
+
+```
+### Empty Vectors
+
+Empty have no type unless you assign them explicitly
+
+```{r empty}
+# option 1
+null_name_opt1 <- NULL
+null_name_opt1
+
+# option 2
+# initialize with nothing
+null_name_opt2 <- character(0)
+null_name_opt2
+
+length(null_name_opt1)
+length(null_name_opt2)
+```
+
+### Type checking
+
+You can check the type of the vectors
+
+This can be done using `is.character()` for characters, for integers `is.integer()` and so forth - These returns `TRUE`/`FALSE`
+
+You can also check they type using `typeof()`, this returns where it's character, integer, and so forth
+
+```{r characters}
+# we use the characters we defined previous
+
+# using is.character()
+is.character(first_name)
+
+# using typeof()
+typeof(first_name)
+
+
+
+# using is.character()
+is.character(first_names1)
+
+# using typeof()
+typeof(first_names1)
+
+
+# using is.character()
+is.character(null_name)
+typeof(null_name)
+
+# using typeof()
+is.character(null_name)
+typeof(null_name_opt2)
+
+```
+
+## Atomic Vectors - Numeric
+
+Under numeric vectors we have integers, double, 
+
+Integers finite (countable) numbers which are whole
+
+Double is any number inclusive of integers, and with numbers on the right side of the decimal
+
+```{r}
+# only one element
+year_integer <- 2020
+year_integer
+# two  elements
+years_integer <- c(2020, 2021)
+years_integer
+# more than two  elements
+years_integer1 <- c(2020, 2021, 2023, 2024)
+years_integer1
+```
+
+#### Type checking
+
+```{r type-check-integers}
+typeof(year_integer)
+typeof(years_integer)
+typeof(years_integer1)
+
+
+is.double(year_integer)
+is.integer(year_integer)
+
+
+integer_initialize <- integer(0)
+is.integer(integer_initialize)
+```
+
+## Factors
+
+In Stata they are the labelled values
+
+Factors are categorical variables with distinct number of items
+These includes things like level of education, gender, liker scale items, means of transport work, rank of employees, type of school
+
+Factors are of two types:
+  - ordered factors: The order is of importance. Essential they are ranked from lower to higher rank, e.g. level of education, rank of employees
+  - unordered factors, the order of items do not matter, for example, marital status, type of school, means of transport work, gender, and so forth
+  
+You create factors using `factor()`   function
+  
+### Lab 2
+
+#### Unorder factors
+
+factors with characters
+
+```{r}
+factor_gender <- factor(x = c("male", "female"), levels = c("male", "female"))
+factor_gender
+
+factor_gender_with_labels <- factor(x = c("male", "female"), levels = c("male", "female"), labels = c("Man", "Woman"))
+factor_gender_with_labels
+
+
+```
+
+Factors with integers
+
+```{r}
+factor_gender_int <- factor(x = c(1, 2), levels = c(1, 2))
+factor_gender_int
+
+factor_gender_with_labels1 <- factor(x = c(1, 2), levels = c(1, 2), labels = c("Man", "Woman"))
+factor_gender_with_labels1
+```
+
+### Type chacking -factors
+
+```{r}
+typeof(factor_gender)
+typeof(factor_gender_int)
+
+
+is.factor(factor_gender)
+```
+
